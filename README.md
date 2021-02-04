@@ -1,5 +1,4 @@
 # News app
-Proto
 
 
 ## Commands
