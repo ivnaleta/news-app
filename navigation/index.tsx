@@ -22,10 +22,11 @@ export default function Navigation() {
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  // todo https://reactnavigation.org/docs/headers/
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator>
       <Stack.Screen name={ScreenName.ArticleList} component={ArticleListScreen} options={{title: 'Новости'}}/>
-      <Stack.Screen name={ScreenName.Article} component={ArticleScreen}/>
+      <Stack.Screen name={ScreenName.Article} component={ArticleScreen} options={{}}/>
       <Stack.Screen name={ScreenName.NotFound} component={NotFoundScreen} options={{title: 'Page Not Found'}}/>
     </Stack.Navigator>
   );
