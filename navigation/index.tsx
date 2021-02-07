@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
@@ -9,10 +9,16 @@ import { ScreenName } from "./ScreenName";
 import ArticleScreen from "../screens/articleScreen/ArticleScreen";
 import ArticleListScreen from "../screens/articleListScreen/ArticleListScreen";
 
+// https://reactnavigation.org/docs/navigating-without-navigation-prop
+const navigationRef = React.createRef<NavigationContainerRef>();
+
+export function rootNavigation(name: ScreenName, params: any) {
+  navigationRef.current?.navigate(name, params);
+}
 
 export default function Navigation() {
   return (
-    <NavigationContainer linking={LinkingConfiguration}>
+    <NavigationContainer linking={LinkingConfiguration} ref={navigationRef}>
       <RootNavigator/>
     </NavigationContainer>
   );
