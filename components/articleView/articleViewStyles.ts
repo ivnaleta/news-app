@@ -10,7 +10,7 @@ export default StyleSheet.create({
 
   modalContainer: {
     ...containerStyles.modalContainer,
-    width: 960,
+    maxWidth: 960,
     backgroundColor: "#fff",
     maxHeight: 800,
     alignSelf: "center",
