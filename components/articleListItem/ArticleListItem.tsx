@@ -1,25 +1,30 @@
 import React from "react";
-import { Image, ListRenderItemInfo } from "react-native";
+import { Image, View } from "react-native";
 import { Article } from "../../models/Article";
-import articleIdToImageSourceMapping from "./articleIdToImageSourceMapping";
 import { Card } from "react-native-paper";
+import articleListItemStyles from "./articleListItemStyles";
 
 interface ArticleListItem {
   article: Article,
   onPress: () => void;
 }
 
-export default function ArticleListItem(props: ArticleListItem) {
+ function ArticleListItem(props: ArticleListItem) {
   return (
-    <Card onPress={props.onPress}>
-      <Card.Title
-        title={props.article.title}
-        subtitleNumberOfLines={2}
-        left={({size}) =>
-          <Image source={articleIdToImageSourceMapping[props.article.id]}
-                 style={{width: size, height: size}}/>
-        }/>
-    </Card>
-  )
+    <View style={articleListItemStyles.item}>
+      <Card onPress={props.onPress} style={{paddingLeft: 0, }}>
+        <Card.Title
+          style={articleListItemStyles.title}
+          title={props.article.title}
+          titleNumberOfLines={4}
+          leftStyle={articleListItemStyles.leftStyle}
+          left={() =>
+            <Image source={props.article.source} style={articleListItemStyles.image}/>
+          }/>
+      </Card>
+    </View>
+  );
 }
 
+
+export default React.memo(ArticleListItem);

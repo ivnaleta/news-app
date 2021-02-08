@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useCallback } from 'react';
 
-import articleListScreenStyles from "./articleListScreenStyles";
 import { FlatList, ListRenderItemInfo, View, } from "react-native";
 import { ScreenName } from "../../navigation/ScreenName";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -9,6 +8,7 @@ import { RootStackParamList } from "../../navigation/RootStackParamList";
 import ArticleListItem from "../../components/articleListItem/ArticleListItem";
 import { Article } from "../../models/Article";
 import { useArticlesStore } from "../../ArticleStore";
+import containerStyles from "../../containerStyles";
 
 
 const articleKeyExtractor = (a: Article) => a.id.toString();
@@ -24,7 +24,7 @@ export default function ArticleListScreen(props: StackScreenProps<RootStackParam
   }, [props.navigation]);
 
   return (
-    <View style={articleListScreenStyles.container}>
+    <View style={containerStyles.modalContainer}>
       <FlatList data={articles} renderItem={renderItem} keyExtractor={articleKeyExtractor}/>
     </View>
   );

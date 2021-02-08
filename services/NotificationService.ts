@@ -1,7 +1,7 @@
 import * as Notifications from 'expo-notifications';
-import { NotificationResponse } from "expo-notifications";
+import { NotificationRequestInput, NotificationResponse } from 'expo-notifications';
 import { Subscription } from '@unimodules/core';
-import { NotificationRequestInput } from "expo-notifications/build/Notifications.types";
+import { Platform } from "react-native";
 
 export class NotificationService {
   constructor() {
@@ -15,6 +15,9 @@ export class NotificationService {
   }
 
   scheduleNotificationAsync(input: NotificationRequestInput) {
+    if (Platform.OS === "web") {
+      return;
+    }
     Notifications.scheduleNotificationAsync(input);
   }
 

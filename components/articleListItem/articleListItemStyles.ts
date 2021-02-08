@@ -1,9 +1,21 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 
 export default StyleSheet.create({
-  container: {
+  item: {
+    margin: 3,
+    padding: 0
   },
   title: {
+    paddingLeft: 0
+  },
+  leftStyle: {
+    padding: 0,
+    width: 80,
+    height: 60
+  },
+  image: {
+    width: 80,
+    height: "100%"
   }
 });

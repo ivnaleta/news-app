@@ -1,11 +1,11 @@
 import create, { State } from "zustand";
 import { Article } from "./models/Article";
-import articlesService from "./services/ArticlesService";
 
 export interface ArticleStore extends State {
   articles: Article[];
   articlesMap: Map<number, Article>;
-  refresh: () => void;
+  refresh: (articles: Article[]) => void;
+  add: (articles: Article[]) => void;
 }
 
 
@@ -14,15 +14,24 @@ export const useArticlesStore = create<ArticleStore>(set => ({
   articlesMap: new Map<number, Article>(),
 
 
-  refresh: () => {
-    articlesService.getArticles()
-      .then((articles) => set((state) => ({
-        ...state,
-        articles,
-        articlesMap: articles.reduce((acc, article) =>  {
-          acc.set(article.id, article)
-          return acc;
-        }, new Map())
-      })));
+  refresh: (articles: Article[]) => {
+    set({...getStateForArticles(articles)});
+  },
+
+  add: (articles: Article[]) => {
+    set((state) => ({
+      ...getStateForArticles([...state.articles, ...articles])
+    }))
   }
 }));
+
+
+function getStateForArticles(articles: Article[]) {
+  return {
+    articles,
+    articlesMap: articles.reduce((acc, article) => {
+      acc.set(article.id, article)
+      return acc;
+    }, new Map())
+  }
+}

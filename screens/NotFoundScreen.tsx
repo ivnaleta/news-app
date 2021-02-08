@@ -9,7 +9,7 @@ export default function NotFoundScreen({
   navigation,
 }: StackScreenProps<RootStackParamList, ScreenName.NotFound>) {
   return (
-    <View style={styles.container}>
+    <View style={styles.modalContainer}>
       <Text style={styles.title}>This screen doesn't exist.</Text>
       <TouchableOpacity onPress={() => navigation.replace(ScreenName.ArticleList)} style={styles.link}>
         <Text style={styles.linkText}>Go to home screen!</Text>
@@ -19,7 +19,7 @@ export default function NotFoundScreen({
 }
 
 const styles = StyleSheet.create({
-  container: {
+  modalContainer: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
